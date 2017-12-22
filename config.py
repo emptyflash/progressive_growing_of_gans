@@ -8,14 +8,14 @@
 #----------------------------------------------------------------------------
 # Paths.
 
-data_dir = 'datasets'
+data_dir = '/media/cameron/Seagate Backup Plus Drive'
 result_dir = 'results'
 
 #----------------------------------------------------------------------------
 # Theano config.
 
 theano_flags                                = dict()
-theano_flags['device']                      = 'cuda'            # New gpuarray backend.
+theano_flags['device']                      = 'cuda0'            # New gpuarray backend.
 #theano_flags['device']                      = 'gpu'             # Old CUDA backend.
 theano_flags['force_device']                = 'True'            # Use GPU or die -- never fall back to CPU.
 theano_flags['dnn.enabled']                 = 'True'            # Use cuDNN or die -- never fall back to custom convolution ops.
@@ -34,8 +34,8 @@ theano_flags['nvcc.fastmath']               = 'True'            # Prefer speed o
 # Baseline configuration from
 # Appendix A.1: "1024x1024 networks used for CelebA-HQ".
 
-run_desc = 'TBD'
-random_seed = 1000
+run_desc = 'art'
+random_seed = 1001
 dataset = None
 
 train = dict(                               # Training parameters:
@@ -100,8 +100,8 @@ loss = dict(                                # Loss function:
 
 # Section 6.3: "High-resolution image generation using CelebA-HQ dataset"
 if 1:
-    run_desc = 'celeb-hq-1024x1024'
-    dataset = dict(h5_path='celeba-hq-1024x1024.h5', resolution=1024, max_labels=0, mirror_augment=True, max_images=30000)
+    run_desc = 'wikiart-512x512'
+    dataset = dict(h5_path='wikiart_512', resolution=512, max_labels=0, mirror_augment=True, max_images=89163)
 
 # Section 6.4: "LSUN results"
 if 0:

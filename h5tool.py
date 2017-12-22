@@ -295,13 +295,17 @@ def create_custom(h5_filename, image_dir):
     
     h5 = HDF5Exporter(h5_filename, resolution, channels)
     for idx in xrange(len(image_filenames)):
-        print '%d / %d\r' % (idx, len(image_filenames)),
-        img = np.asarray(PIL.Image.open(image_filenames[idx]))
-        if channels == 1:
-            img = img[np.newaxis, :, :] # HW => CHW
-        else:
-            img = img.transpose(2, 0, 1) # HWC => CHW
-        h5.add_images(img[np.newaxis])
+        try:
+            print '%d / %d\r' % (idx, len(image_filenames)),
+            img = np.asarray(PIL.Image.open(image_filenames[idx]))
+            if channels == 1:
+                img = img[np.newaxis, :, :] # HW => CHW
+            else:
+                img = img.transpose(2, 0, 1) # HWC => CHW
+            h5.add_images(img[np.newaxis])
+        except Exception as e:
+            print "Failed for ", image_filenames[idx]
+            print e
 
     print '%-40s\r' % 'Flushing data...',
     h5.close()
