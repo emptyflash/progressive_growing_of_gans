@@ -105,7 +105,6 @@ if 1:
     train["resume_network_pkl"] = "009-wikiart-512x512/network-snapshot-006600.pkl"
     train["resume_kimg"] = 6600.0
     train["network_snapshot_ticks"] = 10
-    
 
 # Section 6.4: "LSUN results"
 if 0:
